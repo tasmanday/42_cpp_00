@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:10:15 by tday              #+#    #+#             */
-/*   Updated: 2024/05/05 18:53:30 by tday             ###   ########.fr       */
+/*   Updated: 2024/05/19 16:14:20 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ class Contact
     std::string nickname;
     std::string phoneNumber;
     std::string darkestSecret;
-}
+};
+
+#endif
