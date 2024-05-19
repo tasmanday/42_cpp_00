@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:10:15 by tday              #+#    #+#             */
-/*   Updated: 2024/05/19 16:14:20 by tday             ###   ########.fr       */
+/*   Updated: 2024/05/19 17:42:11 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 /* class */
 class Contact
 {
+	public:
+	Contact();
 	private:
     std::string firstName;
     std::string lastName;
