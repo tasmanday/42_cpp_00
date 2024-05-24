@@ -6,7 +6,7 @@
 /*   By: tday <tday@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:10:15 by tday              #+#    #+#             */
-/*   Updated: 2024/05/19 17:42:11 by tday             ###   ########.fr       */
+/*   Updated: 2024/05/25 01:24:23 by tday             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@
 class Contact
 {
 	public:
-	Contact();
+		Contact();
+		void setInfo();
+		void displayInfo() const;
+		void displaySummary(int index) const;
+		bool isEmpty() const;
 	private:
-    std::string firstName;
-    std::string lastName;
-    std::string nickname;
-    std::string phoneNumber;
-    std::string darkestSecret;
+		std::string firstName;
+		std::string lastName;
+		std::string nickname;
+		std::string phoneNumber;
+		std::string darkestSecret;
 };
 
 #endif
