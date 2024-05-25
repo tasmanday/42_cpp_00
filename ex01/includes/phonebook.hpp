@@ -10,3 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+
+#include "Contact.hpp"
+#include <limits>
+
+class PhoneBook
+{
+public:
+    PhoneBook();
+	void print_menu();
+    void add_contact();
+    void search() const;
+
+private:
+    Contact contacts[8];
+    int oldest_index;
+};
+
+#endif

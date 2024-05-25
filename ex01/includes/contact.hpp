@@ -16,6 +16,13 @@
 /* libraries */
 #include <iostream>	// std::cout, std::cin, std::endl
 #include <string>	// std::string
+#include <iomanip>	// std::setw
+
+#ifdef _WIN32
+#include <windows.h>  // For Sleep on Windows
+#else
+#include <unistd.h>   // For sleep on Unix-based systems
+#endif
 
 /* colours */
 # define RESET	"\033[0m"
@@ -32,17 +39,19 @@
 class Contact
 {
 	public:
-		Contact();
-		void setInfo();
-		void displayInfo() const;
-		void displaySummary(int index) const;
-		bool isEmpty() const;
+		Contact(); // constructor
+		void set_info();
+		void display_info() const;
+		void display_summary(int index) const;
+		bool is_empty() const;
 	private:
-		std::string firstName;
-		std::string lastName;
+		std::string first_name;
+		std::string last_name;
 		std::string nickname;
-		std::string phoneNumber;
-		std::string darkestSecret;
+		std::string phone_number;
+		std::string darkest_secret;
 };
+
+void print_centered(std::string text, int width);
 
 #endif
