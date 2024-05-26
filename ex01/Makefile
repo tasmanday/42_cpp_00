@@ -6,7 +6,7 @@
 #    By: tday <tday@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/26 00:09:20 by tday              #+#    #+#              #
-#    Updated: 2024/05/26 00:09:20 by tday             ###   ########.fr        #
+#    Updated: 2024/05/26 15:40:13 by tday             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC 				= c++
 CFLAGS 			= -Wall -Wextra -Werror -std=c++98
 SRC_DIR 		= sources
 INC_DIR 		= includes
-SRC 			= $(SRC_DIR)/main.cpp $(SRC_DIR)/phonebook.cpp $(SRC_DIR)/contact.cpp
-INC 			= $(INC_DIR)/phonebook.hpp $(INC_DIR)/contact.hpp
+SRC 			= $(SRC_DIR)/main.cpp $(SRC_DIR)/Phonebook.cpp $(SRC_DIR)/Contact.cpp
+INC 			= $(INC_DIR)/Phonebook.hpp $(INC_DIR)/Contact.hpp
 OBJ				= $(SRC:.cpp=.o)
 RM				= rm -f
 
