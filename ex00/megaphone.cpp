@@ -13,6 +13,22 @@
 #include <iostream>	// cout, endl
 #include <cctype>	// toupper
 
+/*
+	Summary
+	Main function for a command-line application that takes arguments and
+	prints them in uppercase. If no arguments are provided, it prints a specific
+	error message. For each argument provided, the function converts all
+	characters to uppercase and prints them separated by spaces.
+
+	Inputs
+	[int] argc: The count of command line arguments passed to the program.
+	[char **] argv: An array of C-style strings representing the command line
+		arguments.
+
+	Outputs
+	Prints the command line arguments in uppercase or an error message if no
+	arguments are provided.
+*/
 int	main(int argc, char **argv)
 {
 	if (argc == 1)
