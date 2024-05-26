@@ -12,8 +12,33 @@
 
 #include "../includes/contact.hpp"
 
+/*
+	Summary
+	Initializes a new Contact instance with empty values for first name,
+	last name, nickname, phone number, and darkest secret.
+	This ensures that all contact fields start in a defined state.
+
+	Inputs
+	None.
+
+	Outputs
+	None.
+*/
 Contact::Contact() : first_name(""), last_name(""), nickname(""), phone_number(""), darkest_secret("") {}
 
+/*
+	Summary
+	Prompts the user to enter personal information for a contact, including
+	first name, last name, nickname, phone number, and darkest secret.
+	Each piece of information is input by the user and stored in the respective
+	member variables.
+
+	Inputs
+	None directly; reads input from the standard input stream.
+
+	Outputs
+	Updates the contact's personal information fields based on user input.
+*/
 void Contact::set_info()
 {
 	std::cout	<< std::endl
@@ -32,15 +57,70 @@ void Contact::set_info()
 				<< std::endl;
 }
 
-void wait(int seconds)
+/*
+	Summary
+	Displays a contact's field name and value formatted within a line.
+	The field value is aligned  to ensure all lines are of equal length based on
+	the specified maximum length. The parameters use 'const std::string&',
+	indicating that they are references to the strings, allowing efficient passing
+	without copying and ensuring that the function does not modify the original
+	string values.
+
+	Inputs
+	[const std::string&] field_name: The name of the field to display.
+		Passing by reference avoids copying.
+	[const std::string&] field_value: The value of the field to display.
+		Marked as 'const' to prevent modification.
+	[int] max_length: The maximum length to which the field value should be padded.
+
+	Outputs
+	Prints the formatted field name and value to the console.
+*/
+void Contact::display_field(const std::string& field_name, const std::string& field_value, int max_length) const
 {
-#ifdef _WIN32
-    Sleep(seconds * 1000);  // Sleep for specified seconds (converted to milliseconds)
-#else
-    sleep(seconds);         // Sleep for specified seconds
-#endif
+    int field_length = field_value.length();
+    std::cout << BLUE "==   " CYAN << field_name << ": " RESET << field_value;
+    if (field_length <= max_length) {
+        for (int i = max_length - field_length; i > 0; i--) {
+            std::cout << " ";
+        }
+    }
+    std::cout << BLUE "==" RESET << std::endl;
 }
 
+/*
+	Summary
+	Prompts the user to press enter to return to the main menu and waits for the
+	user to press a key. This function ensures that the program pauses until the
+	user acknowledges the prompt by pressing a key, providing a simple way to
+	pause the flow of the program until user interaction.
+
+	Inputs
+	None.
+
+	Outputs
+	Prints a prompt to the console and waits for a key press.
+*/
+void Contact::wait_for_keypress() const
+{
+    std::cout << "Press enter to return to menu..." << std::endl;
+    std::cin.get(); // Wait for the user to press enter key
+}
+
+/*
+	Summary
+	Displays detailed information about a contact.The function calculates the 
+	length to center the contact's name in the header and adjusts the display
+	based on the combined length of the first and last names. The function
+	also waits for a key press before returning to the main menu.
+
+	Inputs
+	None.
+
+	Outputs
+	Prints the contact's detailed information to the console and waits for a
+	key press.
+*/
 void Contact::display_info() const
 {
 	int name_length = first_name.length() + last_name.length() + 3;
@@ -52,83 +132,52 @@ void Contact::display_info() const
 	{
 		std::cout << BLUE;
 		for (int i = 0; i < line_length; i++)
-		{
 			std::cout << "=";
-		}
 
 		std::cout <<  " " << first_name << " " << last_name << " ";
 
 		for (int i = 0; i < line_length; i++)
-		{
 			std::cout << "=";
-		}
+
+		if (name_length % 2 == 0)
+			std::cout << "=";
+
 		std::cout << RESET << std::endl;
 	}
 	else
 		std::cout <<  BLUE << first_name << " " << last_name << RESET << std::endl;
 
-	int first_length = first_name.length();
-	if (first_length <= 30)
-	{
-		std::cout << BLUE "==   " CYAN << "First Name: " RESET << first_name;
-		for (int i = 30 - first_length; i > 0; i--)
-			std::cout << " ";
-		std::cout << BLUE "==" RESET << std::endl;
-	}
-	else
-		std::cout << BLUE "==   " CYAN << "First Name: " RESET << first_name << std::endl;
-	
-	int last_length = last_name.length();
-	if (last_length <= 31)
-	{
-		std::cout << BLUE "==   " CYAN << "Last Name: " RESET << last_name;
-		for (int i = 31 - last_length; i > 0; i--)
-			std::cout << " ";
-		std::cout << BLUE "==" RESET << std::endl;
-	}
-	else
-		std::cout << BLUE "==   " CYAN << "Last Name: " RESET << last_name << std::endl;
+	std::cout << BLUE "==                                             ==" RESET << std::endl;
 
-	int nick_length = nickname.length();
-	if (nick_length <= 33)
-	{
-		std::cout << BLUE "==   " CYAN << "Nickame: " RESET << nickname;
-		for (int i = 33 - nick_length; i > 0; i--)
-			std::cout << " ";
-		std::cout << BLUE "==" RESET << std::endl;
-	}
-	else
-		std::cout << BLUE "==   " CYAN << "Nickame: " RESET << nickname << std::endl;
-	
-	int phone_length = phone_number.length();
-	if (phone_length <= 28)
-	{
-		std::cout << BLUE "==   " CYAN << "Phone Number: " RESET << phone_number;
-		for (int i = 28 - phone_length; i > 0; i--)
-			std::cout << " ";
-		std::cout << BLUE "==" RESET << std::endl;
-	}
-	else
-		std::cout << BLUE "==   " CYAN << "Phone Number: " RESET << phone_number << std::endl;
+	display_field("First Name", first_name, 30);
+    display_field("Last Name", last_name, 31);
+    display_field("Nickname", nickname, 32);
+    display_field("Phone Number", phone_number, 28);
+    display_field("Darkest Secret", darkest_secret, 26);
 
-	int secret_length = darkest_secret.length();
-	if (secret_length <= 26)
-	{
-		std::cout << BLUE "==   " CYAN << "Darkest Secret: " RESET << darkest_secret;
-		for (int i = 26 - secret_length; i > 0; i--)
-			std::cout << " ";
-		std::cout << BLUE "==" RESET << std::endl;
-	}
-	else
-		std::cout << BLUE "==   " CYAN << "Darkest Secret: " RESET << darkest_secret << std::endl;
-
+	std::cout << BLUE "==                                             ==" RESET << std::endl;
 
 	std::cout	<< BLUE "=================================================" RESET << std::endl
 				<< std::endl;
-	wait(5);
+	wait_for_keypress();
 }
 
-void print_centered(std::string text, int width)
+/*
+	Summary
+	Centers and prints a given text string within a specified width.
+	If the text is shorter than the width, it adds padding to both sides to center
+	the text. If the text fits exactly or is longer than the width, it prints the
+	text as is, adding a space after the text only if the text length is exactly
+	9 characters.
+
+	Inputs
+	[std::string] text: The text to be centered and printed.
+	[int] width: The total width within which the text should be centered.
+
+	Outputs
+	Prints the centered text to the console.
+*/
+void Contact::print_centered(std::string text, int width)
 {
     int padding = (width - text.length()) / 2;
     if (padding > 0)
@@ -139,6 +188,20 @@ void print_centered(std::string text, int width)
         std::cout << text;
 }
 
+/*
+	Summary
+	Displays a summary of a contact's information in a row format with indexed columns.
+	It includes the contact's index number, first name, last name, and nickname.
+	Each name is truncated to fit within a specified width of 10 characters, adding an
+	ellipsis if the name exceeds 9 characters to indicate truncation.
+
+	Inputs
+	[int] index: The index of the contact in the phonebook, displayed at the start of
+		the summary row.
+
+	Outputs
+	Prints the contact's summary information to the console, formatted within columns.
+*/
 void Contact::display_summary(int index) const
 {
 	int width = 10;
@@ -152,6 +215,17 @@ void Contact::display_summary(int index) const
 	std::cout << BLUE "|==" RESET << std::endl;
 }
 
+/*
+	Summary
+	Checks if any of the contact's fields are empty.This function is used to determine
+	if the contact has incomplete information.
+
+	Inputs
+	None.
+
+	Outputs
+	Returns true if any of the fields are empty, otherwise returns false.
+*/
 bool Contact::is_empty() const
 {
     return first_name.empty() || last_name.empty() || nickname.empty() || phone_number.empty() || darkest_secret.empty();

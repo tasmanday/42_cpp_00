@@ -14,14 +14,23 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include <limits>
+#include <limits> // std::numeric_limits
 
+/* class */
+
+/*
+	Summary
+	the PhoneBook class stores and manages up to eight Contact instances.
+	it offers methods to add new contacts, search for existing contacts, and
+	display a menu for user interactions.
+*/
 class PhoneBook
 {
 public:
-    PhoneBook();
+    PhoneBook(); // constructor
 	void print_menu();
     void add_contact();
+	void print_search_menu() const;
     void search() const;
 
 private:

@@ -18,12 +18,6 @@
 #include <string>	// std::string
 #include <iomanip>	// std::setw
 
-#ifdef _WIN32
-#include <windows.h>  // For Sleep on Windows
-#else
-#include <unistd.h>   // For sleep on Unix-based systems
-#endif
-
 /* colours */
 # define RESET	"\033[0m"
 # define GRAY	"\033[1;30m"
@@ -36,6 +30,13 @@
 # define WHITE	"\033[1;37m"
 
 /* class */
+
+/*
+	Summary
+	the Contact class encapsulates personal information for individual contacts, 
+	and provides methods to set, display, and verify the presence of this
+	information.
+*/
 class Contact
 {
 	public:
@@ -44,14 +45,15 @@ class Contact
 		void display_info() const;
 		void display_summary(int index) const;
 		bool is_empty() const;
+		static void print_centered(std::string text, int width);
 	private:
+		void display_field(const std::string& fieldName, const std::string& fieldValue, int maxLength) const;
+		void wait_for_keypress() const;
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
 };
-
-void print_centered(std::string text, int width);
 
 #endif
